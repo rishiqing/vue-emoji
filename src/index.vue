@@ -68,7 +68,7 @@ export default {
       return this;
     },
     setPath (path) {
-      if (!path) {
+      if (path) {
         Path = path;
       }
       return this;

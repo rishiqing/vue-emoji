@@ -132,9 +132,6 @@ export default {
     getPureName (name) {
       return name.replace(/:/g, '');
     },
-    getClassName (name) {
-      return PREFIX + this.getPureName(name);
-    },
     getFullName (name) {
       return name + EXT;
     },

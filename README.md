@@ -72,7 +72,7 @@ new Vue({
 
 ### 开发
 ```
-git clone git@github.com/374632897/vue-emoji
+git clone git@github.com:rishiqing/vue-emoji.git
 cd vue-emoji
 yarn
 npm start

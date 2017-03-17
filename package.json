@@ -1,0 +1,36 @@
+{
+  "name": "rui-vue-emoji",
+  "version": "1.0.0",
+  "description": "基于 Vue2.0 的emoji插件",
+  "main": "dist/vue-emoji.js",
+  "author": "Jason <374632897@qq.com>",
+  "scripts": {
+    "prepublish": "npm run build",
+    "start": "rollup -cw",
+    "build": "NODE_ENV=prod rollup -c",
+    "clean": "rm -rf dist",
+    "pages": "bash ./pages.sh"
+  },
+  "files": [
+    "dist",
+    "examples",
+    "images"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rishiqing/vue-emoji.git"
+  },
+  "keywords": [
+    "Vue2.0",
+    "emoji",
+    "vue-component"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rishiqing/vue-emoji/issues"
+  },
+  "homepage": "https://github.com/rishiqing/vue-emoji#readme"
+}

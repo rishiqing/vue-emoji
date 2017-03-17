@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue-emoji</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../dist/vue-emoji.css">
+  <script src = './vue.min.js'></script>
+  <script src = '../dist/vue-emoji.js'></script>
+  <style type="text/css">
+    body {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    [contenteditable] {
+      min-height: 60px;
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #233;
+      box-shadow: 0 0 3px yellowgreen;
+      text-align: left;
+      color: #333;
+      line-height: 1.7;
+
+    }
+    [contenteditable]:focus .rui-emoji-img{
+      vertical-align: text-top;
+    }
+    [contenteditable]:focus {
+      outline: none;
+    }
+    pre {
+      border: 1px solid #eee;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div>
+    <h1>Vue-Emoji</h1>
+    <div contenteditable="" ref = 'edit' focus></div>
+    <button ref = 'btn' @click = 'showEmoji = !showEmoji'>emoji</button>
+    <vue-emoji
+      v-show = 'showEmoji'
+      ref = 'emoji'
+      @select = 'hide()'
+      @hide = 'hide()'
+    ></vue-emoji>
+  </div>
+</div>
+<div class="example-code">
+  <pre>
+
+  </pre>
+</div>
+<script type="text/javascript" id = 'script'>
+new Vue({
+  el: '#app',
+  components: {
+    VueEmoji
+  },
+  data () {
+    return {
+      showEmoji : false
+    }
+  },
+  mounted () {
+    this.$refs.emoji.appendTo({
+      area: this.$refs.edit,
+      btn: this.$refs.btn,
+      position: 'top left'
+    });
+  },
+  methods: {
+    hide () {
+      this.showEmoji = false;
+    }
+  }
+});
+</script>
+<script type="text/javascript">
+document.querySelector('.example-code pre').innerHTML = document.querySelector('#script').innerHTML;
+</script>
+</body>
+</html>

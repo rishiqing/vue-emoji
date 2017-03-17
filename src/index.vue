@@ -65,10 +65,13 @@ export default {
       this.saveSelection = this.saveSelection.bind(this);
       this.$btn.addEventListener('mousedown', this.saveSelection, false);
       this.calcPosition(position);
+      return this;
     },
     setPath (path) {
-      if (!path) return;
-      Path = path;
+      if (!path) {
+        Path = path;
+      }
+      return this;
     },
     calcPosition (position = 'top center') {
       const [vertical, horizontal] = position.split(' ');

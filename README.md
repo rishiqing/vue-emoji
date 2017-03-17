@@ -59,6 +59,31 @@ new Vue({
   }
 });
 ```
+### 在`webpack`中引入
+
+```js
+// styles.js
+import 'rui-vue-emoji/dist/vue-emoji.css';
+```
+你也可以考虑将雪碧图和单个图标上传到`CDN`, 那么需要改动一下`js`和`css`文件。
+
+```css
+[class*="sprite-"] {
+  background-image: url("https://your.cdn.path/")!important;
+}
+```
+```js
+mounted () {
+  this.$refs.emoji.appendTo({
+    area: this.$refs.edit,
+    btn: this.$refs.btn,
+    position: 'top left'
+  }).setPath('https://your.cdn.path/');
+},
+```
+需要注意的是， 在`css`中控制雪碧图的路径， 在`js`中控制最后引用的单个表情图片的路径。
+
+
 ## 选项
 ### 事件
 * `select`: 选中表情时会触发此事件， 事件参数为选中的表情对应的图片

@@ -6,7 +6,7 @@
 
 ## 安装
 ```
-yarn add vue-emoji-component
+yarn add rui-vue-emoji
 ```
 
 ## 使用示例

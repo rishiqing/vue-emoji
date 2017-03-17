@@ -54,7 +54,6 @@ new Vue({
       this.showEmoji = false;
     },
     handleHide (e) {
-      if (e.target === this.$refs.btn) return;
       this.hide();
     }
   }

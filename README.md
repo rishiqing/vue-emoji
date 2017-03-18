@@ -1,7 +1,5 @@
 # vue-emoji
 
-基于 Vue2.0 的emoji插件
-
 <p align="center">
   <a href="https://travis-ci.org/rishiqing/rishiqing-deploy/builds"><img src="https://img.shields.io/travis/rishiqing/vue-emoji.svg" alt="Build Status"></a>
   <a href="https://www.npmjs.com/package/rui-vue-emoji"><img src="https://img.shields.io/npm/dt/rui-vue-emoji.svg" alt="Downloads"></a>
@@ -9,6 +7,9 @@
   <a href="https://www.npmjs.com/package/rui-vue-emoji"><img src="https://img.shields.io/npm/l/rui-vue-emoji.svg" alt="License"></a>
   <br>
 </p>
+
+基于 Vue2.0 的emoji插件
+
 
 ![Vue-emoji](https://camo.githubusercontent.com/a63545c2d6c885e1b8486fe27a4a3582404f1a7a/687474703a2f2f6f6d776b6a316739392e626b742e636c6f7564646e2e636f6d2f5675652d656d6f6a692e676966)
 

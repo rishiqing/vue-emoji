@@ -1,7 +1,7 @@
 <template>
   <div class="rui-emoji">
     <ul class="emoji-controller" @click = 'changeActive' ref = 'controller' v-clickoutside = 'hide'>
-      <li v-for = 'pannel in pannels'>{{ pannel }}</li>
+      <li v-for = 'pannel,index in pannels'>{{ titles[index] }}</li>
     </ul>
     <ul class = 'emoji-container' ref = 'view' @click = 'selectItem'>
       <li v-for = 'emojiGroup in emojis'>
@@ -43,6 +43,9 @@ export default {
       activeIndex: 0,
       selection: null,
     };
+  },
+  props: {
+    captions: Array,
   },
   directives: {
     clickoutside
@@ -195,6 +198,9 @@ export default {
         return Object.keys(this.emojiData[item]);
       });
     },
+    titles () {
+      return this.captions || this.pannels;
+    }
   },
   watch: {
     activeIndex (index) {

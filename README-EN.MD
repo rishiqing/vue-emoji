@@ -8,18 +8,17 @@
   <br>
 </p>
 
-基于 Vue2.0 的emoji插件
+An Emoji component for Vue2.0
 
-[English](./README-EN.MD)
 
 ![Vue-emoji](https://camo.githubusercontent.com/a63545c2d6c885e1b8486fe27a4a3582404f1a7a/687474703a2f2f6f6d776b6a316739392e626b742e636c6f7564646e2e636f6d2f5675652d656d6f6a692e676966)
 
-## 安装
+## install
 ```
 yarn add rui-vue-emoji
 ```
 
-## 使用示例
+## usage
 ```html
 <link rel="stylesheet" type="text/css" href="./node_modules/vue-emoji-component/dist/vue-emoji.css">
 <script src = './vue.min.js'></script>
@@ -69,13 +68,13 @@ new Vue({
   }
 });
 ```
-### 在`webpack`中引入
+### used with webpack
 
 ```js
 // styles.js
 import 'rui-vue-emoji/dist/vue-emoji.css';
 ```
-你也可以考虑将雪碧图和单个图标上传到`CDN`, 那么需要改动一下`js`和`css`文件。
+You may also consider use the emoji-sprite and single emoji-picture with `CDN`, then you need make some little changes in your css and js files.
 
 ```css
 [class*="sprite-"] {
@@ -91,26 +90,23 @@ mounted () {
   }).setPath('https://your.cdn.path/');
 },
 ```
-需要注意的是， 在`css`中控制雪碧图的路径， 在`js`中控制最后引用的单个表情图片的路径。
+Something you need to notice is that you should control the sprite path in your css file and single emoji picture path in js file.
 
+## options
 
-## 选项
+### event
+* `select`: When a emoji is selected, the `select`event will be triggerd. The only parameter is an `img` element.
+* `hide`: When `hide` event is triggerd, you need to close the emoji-pop in the parent component. It always triggerd when an element in page is clicked, and the click event object will be passed as the param.
 
-### 事件
-* `select`: 选中表情时会触发此事件， 事件参数为选中的表情对应的图片
-* `hide`: 触发隐藏事件， 当发生这个事件后， 需要在父组件中对弹窗进行关闭, 含有一个事件对象， 表示点击的元素。
-
-### 方法
+### methods
 
 #### `appendTo`
-这个方法需要在父组件`mounted`的是时候进行调用， 以便初始化参数。
-至少需要传递两个参数`area`以及`btn`, area表示需要将表情插入的地方， `btn`表示触发表情弹窗显示的按钮。
-可选的`position`选项用于设置表情框的位置， 默认为`top center`, 表示在位于按钮的上方， 居中显示。 当第一个参数不为top的时候， 将会置于按钮下方。 第二个参数表示弹窗相对于按钮的位置， 可选的有`left`, `center`, `right`三个选项。
+You need to call this method when the parent component mounted to initialilze the params of emoji component. An object at least contains two properties `area` and `btn` should be passed as param. `area` means the element you want the emoji inserted and `btn` means the button is used to trigger emoji pop. The property `position` is optional. It can decide the emoji-pop's postion relative to the button. The default value is `top center`, means the emoji-pop is on the top of button and in the horizontal direction it's center is button. You can use `top` or `bottom` for vertical and `left`,`center` or `right` for horizontal.
 
-### 属性
+### props
 
 #### `captions`
-默认情况下， 会使用`表情、自然、物品、地点、符号`来作为每个emoji栏目的标题， 可以通过使用组件的时候传入`captions`参数， 来改变标题文字。
+By default, component uses Chinese as captions for diffrent emoji pannels like `表情、自然、物品、地点、符号`. If you want to use others, you can passed `captions` props in vue-template. The captions should be an Array, and each item should be a string.
 ```html
 <vue-emoji
   v-show = 'showEmoji'
@@ -129,7 +125,7 @@ data () {
 ```
 
 
-## 开发
+## development
 ```
 git clone git@github.com:rishiqing/vue-emoji.git
 cd vue-emoji

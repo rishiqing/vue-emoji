@@ -10,7 +10,7 @@
     "build": "NODE_ENV=prod rollup -c",
     "clean": "rm -rf dist",
     "pages": "bash ./pages.sh",
-    "test" : ""
+    "test" : "eslint src"
   },
   "files": [
     "dist",

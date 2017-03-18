@@ -1,6 +1,7 @@
 # vue-emoji
-
 基于 Vue2.0 的emoji插件
+![build](https://travis-ci.org/rishiqing/vue-emoji#)
+![LICENSE](https://img.shields.io/github/license/mashape/apistatus.svg)
 
 ![Vue-emoji](https://camo.githubusercontent.com/a63545c2d6c885e1b8486fe27a4a3582404f1a7a/687474703a2f2f6f6d776b6a316739392e626b742e636c6f7564646e2e636f6d2f5675652d656d6f6a692e676966)
 

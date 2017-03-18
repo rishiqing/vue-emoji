@@ -9,7 +9,8 @@
     "start": "rollup -cw",
     "build": "NODE_ENV=prod rollup -c",
     "clean": "rm -rf dist",
-    "pages": "bash ./pages.sh"
+    "pages": "bash ./pages.sh",
+    "test" : ""
   },
   "files": [
     "dist",

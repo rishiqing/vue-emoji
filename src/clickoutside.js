@@ -1,7 +1,7 @@
 // referenced from https://github.com/ElemeFE/element/blob/dev/src/utils/clickoutside.js#L22-L63
 export default {
   inserted (el, { expression }, { elm, context }) {
-    el.documentHandler = (e) =>  {
+    el.documentHandler = (e) => {
       if (elm.contains(e.target)) {
         return false;
       }
@@ -17,5 +17,5 @@ export default {
   },
   unbind (el) {
     document.removeEventListener('click', el.documentHandler);
-  }
+  },
 };

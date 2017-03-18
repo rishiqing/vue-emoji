@@ -1,7 +1,9 @@
 // referenced from emojiarea https://github.com/diy/jquery-emojiarea/blob/master/jquery.emojiarea.js#L51-L121
 const doc = document;
 
-let restoreSelection, saveSelection, replaceSelection;
+let restoreSelection;
+let saveSelection;
+let replaceSelection;
 if (window.getSelection) {
   restoreSelection = function (savedSelection) {
     const sel = window.getSelection();
@@ -11,8 +13,8 @@ if (window.getSelection) {
     }
   };
   saveSelection = function () {
-    const sel = window.getSelection(),
-      ranges = [];
+    const sel = window.getSelection();
+    const ranges = [];
 
     if (sel.rangeCount) {
       for (let i = 0, len = sel.rangeCount; i < len; ++i) {
@@ -63,7 +65,7 @@ if (window.getSelection) {
 
 export default new class {
   escapeRegex (str) {
-    return (str + '').replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
+    return (`${str}`).replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
   }
   htmlEntities (str) {
     return String(str)

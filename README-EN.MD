@@ -13,12 +13,12 @@ An Emoji component for Vue2.0
 
 ![Vue-emoji](https://camo.githubusercontent.com/a63545c2d6c885e1b8486fe27a4a3582404f1a7a/687474703a2f2f6f6d776b6a316739392e626b742e636c6f7564646e2e636f6d2f5675652d656d6f6a692e676966)
 
-## install
+## Install
 ```
 yarn add rui-vue-emoji
 ```
 
-## usage
+## Usage
 ```html
 <link rel="stylesheet" type="text/css" href="./node_modules/vue-emoji-component/dist/vue-emoji.css">
 <script src = './vue.min.js'></script>
@@ -68,13 +68,13 @@ new Vue({
   }
 });
 ```
-### used with webpack
+### Used with webpack
 
 ```js
 // styles.js
 import 'rui-vue-emoji/dist/vue-emoji.css';
 ```
-You may also consider use the emoji-sprite and single emoji-picture with `CDN`, then you need make some little changes in your css and js files.
+You may also consider using the emoji-sprite and single emoji-picture with `CDN`, you can upload images in `./images` to your CDN and then you need to make some little changes in your css and js files.
 
 ```css
 [class*="sprite-"] {
@@ -92,18 +92,18 @@ mounted () {
 ```
 Something you need to notice is that you should control the sprite path in your css file and single emoji picture path in js file.
 
-## options
+## Options
 
 ### event
 * `select`: When a emoji is selected, the `select`event will be triggerd. The only parameter is an `img` element.
 * `hide`: When `hide` event is triggerd, you need to close the emoji-pop in the parent component. It always triggerd when an element in page is clicked, and the click event object will be passed as the param.
 
-### methods
+### Methods
 
 #### `appendTo`
 You need to call this method when the parent component mounted to initialilze the params of emoji component. An object at least contains two properties `area` and `btn` should be passed as param. `area` means the element you want the emoji inserted and `btn` means the button is used to trigger emoji pop. The property `position` is optional. It can decide the emoji-pop's postion relative to the button. The default value is `top center`, means the emoji-pop is on the top of button and in the horizontal direction it's center is button. You can use `top` or `bottom` for vertical and `left`,`center` or `right` for horizontal.
 
-### props
+### Props
 
 #### `captions`
 By default, component uses Chinese as captions for diffrent emoji pannels like `表情、自然、物品、地点、符号`. If you want to use others, you can passed `captions` props in vue-template. The captions should be an Array, and each item should be a string.
@@ -125,7 +125,7 @@ data () {
 ```
 
 
-## development
+## Development
 ```
 git clone git@github.com:rishiqing/vue-emoji.git
 cd vue-emoji

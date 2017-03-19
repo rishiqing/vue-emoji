@@ -106,7 +106,7 @@ You need to call this method when the parent component mounted to initialilze th
 ### Props
 
 #### `captions`
-By default, component uses Chinese as captions for diffrent emoji pannels like `表情、自然、物品、地点、符号`. If you want to use others, you can passed `captions` props in vue-template. The captions should be an Array, and each item should be a string.
+By default, component uses Chinese as captions for different emoji pannels like `表情、自然、物品、地点、符号`. If you want to use others, you can passed `captions` props in vue-template. The captions should be an Array, and each item should be a string.
 ```html
 <vue-emoji
   v-show = 'showEmoji'

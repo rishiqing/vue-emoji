@@ -132,3 +132,7 @@ cd vue-emoji
 yarn
 npm start
 ```
+
+### Some Problems
+Because I've just used Vue for a little time, so this component has too many problems. Such as I hope that I can pass some props in `template` to instead of calling  `appendTo` method of component after it's parent mounted. I think the current implementation is an ugly hack, but after I tried too many times, I cannot still find a good way to pass some references of other DOM nodes to child component when parent component is rendering it. Of course, maybe the most important reason is that I've made a wrong design with this, so if you have a better way to solve it, please tell me, thanks a lot.
+

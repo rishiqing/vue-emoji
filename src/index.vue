@@ -64,7 +64,7 @@ export default {
     appendTo ({ area, btn, position } = {}) {
       this.$area = area;
       this.$btn = btn;
-      this.__position = position;
+      this.__position = position || 'top center';
       this.saveSelection = this.saveSelection.bind(this);
       this.$btn.addEventListener('mousedown', this.saveSelection, false);
       this.calcPosition(position);
@@ -76,7 +76,7 @@ export default {
       }
       return this;
     },
-    calcPosition (position = 'top center') {
+    calcPosition (position = this.__position) {
       const [vertical, horizontal] = position.split(' ');
       this.setVertical(vertical);
       this.setHorizontal(horizontal);

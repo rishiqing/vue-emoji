@@ -103,6 +103,20 @@ Something you need to notice is that you should control the sprite path in your 
 #### `appendTo`
 You need to call this method when the parent component mounted to initialilze the params of emoji component. An object at least contains two properties `area` and `btn` should be passed as param. `area` means the element you want the emoji inserted and `btn` means the button is used to trigger emoji pop. The property `position` is optional. It can decide the emoji-pop's postion relative to the button. The default value is `top center`, means the emoji-pop is on the top of button and in the horizontal direction it's center is button. You can use `top` or `bottom` for vertical and `left`,`center` or `right` for horizontal.
 
+#### `calcPosition`
+This method is used to recalc the position of emoji pop, when the content of element `[contenteditable]` added, usually it's height will be changed, so we need to recalc the position of pop. But unfortunately I cannot find a way to listen to the change of height automaticaly, so you should listen it manualy, and then called the method.
+
+`app.vue`
+```js
+watch: {
+  showEmoji (value) { // showEmoji is the prop that control the pop's display.
+    if (value) {
+      this.$refs.emoji.calcPosition();
+    }
+  }
+}
+```
+
 ### Props
 
 #### `captions`

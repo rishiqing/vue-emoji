@@ -107,6 +107,20 @@ mounted () {
 至少需要传递两个参数`area`以及`btn`, area表示需要将表情插入的地方， `btn`表示触发表情弹窗显示的按钮。
 可选的`position`选项用于设置表情框的位置， 默认为`top center`, 表示在位于按钮的上方， 居中显示。 当第一个参数不为top的时候， 将会置于按钮下方。 第二个参数表示弹窗相对于按钮的位置， 可选的有`left`, `center`, `right`三个选项。
 
+#### `calcPosition`
+用于重新计算弹窗的位置， 当`[contenteditable]`内容增加的情况下， 通常其高度也会变化， 这个时候需要重新进行计算以更新弹窗的位置。 遗憾的是， 我没能找到一种自动监听其变化的方法， 所以需要手动监听， 然后再进行调用。
+
+`app.vue`
+```js
+watch: {
+  showEmoji (value) { // showEmoji 为控制弹窗隐藏显示的属性。
+    if (value) {
+      this.$refs.emoji.calcPosition();
+    }
+  }
+}
+```
+
 ### 属性
 
 #### `captions`

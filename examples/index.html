@@ -76,6 +76,13 @@ new Vue({
     hide () {
       this.showEmoji = false;
     }
+  },
+  watch: {
+    showEmoji (value) {
+      if (value) {
+        this.$refs.emoji.calcPosition();
+      }
+    }
   }
 });
 </script>

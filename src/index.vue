@@ -86,7 +86,6 @@ export default {
     },
     handleUnicode () {
       if (!this.useUnicode) return;
-      console.time('handleUnicode')
       const view = this.$refs.view;
       const data = this.emojiData;
       Object.keys(data).forEach(panel => {
@@ -95,12 +94,12 @@ export default {
           if (!getUnicode(this.getPureName(item))) {
             const ele = view.querySelector(`[title="${item}"]`);
             if (ele) {
-              ele.parentElement.remove();
+              const par = ele.parentElement;
+              par.parentElement.removeChild(par);
             }
           }
         });
       });
-      console.timeEnd('handleUnicode')
     },
     calcPosition (position = this.__position) {
       const [vertical, horizontal] = position.split(' ');
@@ -198,17 +197,16 @@ export default {
       if (tag === 'li') return;
       const emojiName = this.getEmojiName(tar);
       const filePath = this.getPath(emojiName);
-      const img = this.generateImg(filePath, emojiName);
+      const img = this.getEmoji(filePath, emojiName);
       this.$emit('select', img);
       this.insertEmoji(img);
     },
-
-    generateImg (src, emojiName) {
-      if (this.useUnicode) {
-        const emoji = getUnicode(emojiName);
-        const text = document.createTextNode(emoji);
-        return text;
-      }
+    getEmoji (src, emojiName) {
+      return this.useUnicode ?
+        this.getUnicodeEmoji(src, emojiName) :
+        this.getImgEmoji(src, emojiName);
+    },
+    getImgEmoji (src, emojiName) {
       const img = new Image();
       img.src = src;
       img.alt = emojiName;
@@ -218,6 +216,12 @@ export default {
       img.height = 20;
       return img;
     },
+    getUnicodeEmoji (src, emojiName) {
+      const emoji = getUnicode(emojiName);
+      const text = document.createTextNode(emoji);
+      return text;
+    },
+
     hide (e) {
       if (e.target === this.$btn) return;
       this.$emit('hide', e);

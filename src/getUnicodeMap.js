@@ -1,8 +1,8 @@
 // copy from emojilib https://github.com/muan/emojilib/blob/master/emojis.json
 // because use npm package directly may cause some problems like make the source code bigger
 // so I copy the map directly.
-const lib = { '100': { char: '💯' },
-  '1234': { char: '🔢' },
+const lib = { 100: { char: '💯' },
+  1234: { char: '🔢' },
   grinning: { char: '😀' },
   grimacing: { char: '😬' },
   grin: { char: '😁' },
@@ -1449,4 +1449,4 @@ const lib = { '100': { char: '💯' },
   suspect: { char: null },
   hurtrealbad: { char: null } };
 
-export default (name) => lib[name];
+export default name => lib[name];

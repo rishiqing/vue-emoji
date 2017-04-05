@@ -14,5 +14,6 @@ module.exports = {
       "no-plusplus"                 : 0,
       "quotes"                      : [2, "single"],
       'class-methods-use-this'      : 0,
+      'no-restricted-syntax'        : 0,
     }
 };

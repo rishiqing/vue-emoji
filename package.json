@@ -47,7 +47,5 @@
     "url": "https://github.com/rishiqing/vue-emoji/issues"
   },
   "homepage": "https://github.com/rishiqing/vue-emoji#readme",
-  "dependencies": {
-    "vue": "^2.2.6"
-  }
+  "dependencies": {}
 }

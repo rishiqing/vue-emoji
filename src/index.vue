@@ -20,7 +20,8 @@
 import RangeUtil    from './rangeUtil';
 import data         from './emoji-data';
 import clickoutside from './clickoutside';
-
+import getUnicode   from './getUnicodeMap';
+console.log('fuck')
 const EXT    = '.png';
 const PREFIX = 'sprite-';
 const AREA_HEIGHT = 186;
@@ -46,6 +47,9 @@ export default {
   },
   props: {
     captions: Array,
+    unicode: {
+      default: false,
+    },
   },
   directives: {
     clickoutside
@@ -56,6 +60,7 @@ export default {
     this.$nextTick(() => {
       this.selectByIndex(0);
     });
+    this.useUnicode = this.unicode;
   },
   destroyed () {
     this.$btn.removeEventListener('mousedown', this.saveSelection, false);
@@ -178,6 +183,12 @@ export default {
     },
 
     generateImg (src, emojiName) {
+      if (this.useUnicode) {
+        const emoji = document.createElement('span');
+        emoji.className = 'rui-emoji-img';
+        emoji.textContent = (getUnicode(emojiName) || {}).char || '';
+        return emoji;
+      }
       const img = new Image();
       img.src = src;
       img.alt = emojiName;

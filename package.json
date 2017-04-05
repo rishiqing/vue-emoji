@@ -10,7 +10,7 @@
     "build": "NODE_ENV=prod rollup -c",
     "clean": "rm -rf dist",
     "pages": "bash ./pages.sh",
-    "test" : "eslint src"
+    "test": "eslint src"
   },
   "files": [
     "dist",
@@ -46,5 +46,6 @@
   "bugs": {
     "url": "https://github.com/rishiqing/vue-emoji/issues"
   },
-  "homepage": "https://github.com/rishiqing/vue-emoji#readme"
+  "homepage": "https://github.com/rishiqing/vue-emoji#readme",
+  "dependencies": {}
 }

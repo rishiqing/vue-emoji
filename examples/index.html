@@ -47,6 +47,22 @@
       @select = 'hide()'
       @hide = 'hide()'
     ></vue-emoji>
+    <h2>使用unicode字符</h2>
+  </div>
+</div>
+<div id="app2">
+  <div>
+    <h1>Vue-Emoji</h1>
+    <div contenteditable="" ref = 'edit' focus></div>
+    <button ref = 'btn' @click = 'showEmoji = !showEmoji'>emoji</button>
+    <h2>使用unicode字符</h2>
+    <vue-emoji
+      v-show = 'showEmoji'
+      ref = 'emoji'
+      :unicode='true'
+      @select = 'hide()'
+      @hide = 'hide()'
+    ></vue-emoji>
   </div>
 </div>
 <div class="example-code">
@@ -55,36 +71,46 @@
   </pre>
 </div>
 <script type="text/javascript" id = 'script'>
-new Vue({
-  el: '#app',
-  components: {
-    VueEmoji
-  },
-  data () {
-    return {
-      showEmoji : false,
-    }
-  },
-  mounted () {
-    this.$refs.emoji.appendTo({
-      area: this.$refs.edit,
-      btn: this.$refs.btn,
-      position: 'top left'
-    });
-  },
-  methods: {
-    hide () {
-      this.showEmoji = false;
-    }
-  },
-  watch: {
-    showEmoji (value) {
-      if (value) {
-        this.$refs.emoji.calcPosition();
+var getCommon = function () {
+  return {
+    components: {
+      VueEmoji
+    },
+    data () {
+      return {
+        showEmoji : false,
+      }
+    },
+    mounted () {
+      this.$refs.emoji.appendTo({
+        area: this.$refs.edit,
+        btn: this.$refs.btn,
+        position: 'top left'
+      });
+    },
+    methods: {
+      hide () {
+        this.showEmoji = false;
+      }
+    },
+    watch: {
+      showEmoji (value) {
+        if (value) {
+          this.$refs.emoji.calcPosition();
+        }
       }
     }
-  }
-});
+  };
+}
+var example1 = getCommon();
+example1.el = '#app';
+
+var example2 = getCommon();
+example2.el = '#app2';
+
+new Vue(example1);
+new Vue(example2);
+
 </script>
 <script type="text/javascript">
 document.querySelector('.example-code pre').innerHTML = document.querySelector('#script').innerHTML;

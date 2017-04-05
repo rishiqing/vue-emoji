@@ -123,6 +123,19 @@ watch: {
 
 ### 属性
 
+#### `unicode`
+默认情况下当选中一个表情的时候会以图片的方式插入对应区域。你可以通过配置`unicode`选项来开启`Unicode`支持， 也就是说， 在这种情况下， 选中一个表情的时候， 会插入对应的`Unicode`字符。需要注意的是， 相比于图片模式， 使用`Unicode`的时候会缺少一些表情。
+
+```html
+<vue-emoji
+  v-show = 'showEmoji'
+  ref = 'emoji'
+  :unicode='true'
+  @select = 'hide()'
+  @hide = 'hide()'
+></vue-emoji>
+```
+
 #### `captions`
 默认情况下， 会使用`表情、自然、物品、地点、符号`来作为每个emoji栏目的标题， 可以通过使用组件的时候传入`captions`参数， 来改变标题文字。
 ```html

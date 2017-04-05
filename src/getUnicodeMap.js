@@ -1449,4 +1449,4 @@ const lib = { 100: { char: '💯' },
   suspect: { char: null },
   hurtrealbad: { char: null } };
 
-export default name => lib[name];
+export default name => (lib[name] || {}).char || '';

@@ -5,7 +5,7 @@
     </ul>
     <ul class = 'emoji-container' ref = 'view' @click = 'selectItem'>
       <li v-for = 'emojiGroup in emojis'>
-        <a href="javascript:;" v-for = 'emoji in emojiGroup' >
+        <a href="javascript:;" v-for = 'emoji in emojiGroup'>
            <span class = 'emoji-item'
              :title = 'emoji'
              :class = '"sprite-" + getPureName(emoji)'
@@ -21,7 +21,7 @@ import RangeUtil    from './rangeUtil';
 import data         from './emoji-data';
 import clickoutside from './clickoutside';
 import getUnicode   from './getUnicodeMap';
-console.log('fuck')
+
 const EXT    = '.png';
 const PREFIX = 'sprite-';
 const AREA_HEIGHT = 186;
@@ -61,6 +61,9 @@ export default {
       this.selectByIndex(0);
     });
     this.useUnicode = this.unicode;
+    this.$nextTick(() => {
+      this.handleUnicode();
+    });
   },
   destroyed () {
     this.$btn.removeEventListener('mousedown', this.saveSelection, false);
@@ -80,6 +83,24 @@ export default {
         Path = path;
       }
       return this;
+    },
+    handleUnicode () {
+      if (!this.useUnicode) return;
+      console.time('handleUnicode')
+      const view = this.$refs.view;
+      const data = this.emojiData;
+      Object.keys(data).forEach(panel => {
+        const panelEmoji = data[panel];
+        Object.keys(panelEmoji).forEach(item => {
+          if (!getUnicode(this.getPureName(item))) {
+            const ele = view.querySelector(`[title="${item}"]`);
+            if (ele) {
+              ele.parentElement.remove();
+            }
+          }
+        });
+      });
+      console.timeEnd('handleUnicode')
     },
     calcPosition (position = this.__position) {
       const [vertical, horizontal] = position.split(' ');
@@ -184,7 +205,7 @@ export default {
 
     generateImg (src, emojiName) {
       if (this.useUnicode) {
-        const emoji = (getUnicode(emojiName) || {}).char || '';
+        const emoji = getUnicode(emojiName);
         const text = document.createTextNode(emoji);
         return text;
       }

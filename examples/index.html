@@ -36,9 +36,9 @@
   </style>
 </head>
 <body>
+<h1>Vue-Emoji</h1>
 <div id="app">
   <div>
-    <h1>Vue-Emoji</h1>
     <div contenteditable="" ref = 'edit' focus></div>
     <button ref = 'btn' @click = 'showEmoji = !showEmoji'>emoji</button>
     <vue-emoji
@@ -47,12 +47,11 @@
       @select = 'hide()'
       @hide = 'hide()'
     ></vue-emoji>
-    <h2>使用unicode字符</h2>
   </div>
 </div>
+<hr>
 <div id="app2">
   <div>
-    <h1>Vue-Emoji</h1>
     <div contenteditable="" ref = 'edit' focus></div>
     <button ref = 'btn' @click = 'showEmoji = !showEmoji'>emoji</button>
     <h2>使用unicode字符</h2>

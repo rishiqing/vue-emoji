@@ -184,10 +184,9 @@ export default {
 
     generateImg (src, emojiName) {
       if (this.useUnicode) {
-        const emoji = document.createElement('span');
-        emoji.className = 'rui-emoji-img';
-        emoji.textContent = (getUnicode(emojiName) || {}).char || '';
-        return emoji;
+        const emoji = (getUnicode(emojiName) || {}).char || '';
+        const text = document.createTextNode(emoji);
+        return text;
       }
       const img = new Image();
       img.src = src;

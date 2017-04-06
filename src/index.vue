@@ -218,7 +218,7 @@ export default {
     },
     getUnicodeEmoji (src, emojiName) {
       const emoji = getUnicode(emojiName);
-      return document.createTextNode(' ' + emoji + ' ');
+      return document.createTextNode(emoji);
     },
 
     hide (e) {

@@ -8,4 +8,5 @@ sed -i '' -ne 's!../dist/!../dest/!;p' examples/index.html;
 git add .
 git commit -m 'auto update gh-pages'
 git push;
+rm -rf dest;
 git checkout master;

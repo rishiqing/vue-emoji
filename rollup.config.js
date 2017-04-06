@@ -16,7 +16,8 @@ export default {
     resolve({
       jsnext: true,
       main: true,
-      browser: true
+      browser: true,
+      extensions: ['.js', '.json']
     }),
     vue({
       css: __dirname + '/dist/vue-emoji.css',

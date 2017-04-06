@@ -70,8 +70,9 @@
   </pre>
 </div>
 <script type="text/javascript" id = 'script'>
-var getCommon = function () {
+var getCommon = function (selector) {
   return {
+    el: selector,
     components: {
       VueEmoji
     },
@@ -101,14 +102,9 @@ var getCommon = function () {
     }
   };
 }
-var example1 = getCommon();
-example1.el = '#app';
 
-var example2 = getCommon();
-example2.el = '#app2';
-
-new Vue(example1);
-new Vue(example2);
+new Vue(getCommon('#app'));
+new Vue(getCommon('#app2'));
 
 </script>
 <script type="text/javascript">

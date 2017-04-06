@@ -1,6 +1,6 @@
 {
   "name": "rui-vue-emoji",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "基于 Vue2.0 的emoji插件",
   "main": "dist/vue-emoji.js",
   "author": "Jason <374632897@qq.com>",

@@ -18,9 +18,11 @@
 </template>
 <script>
 import RangeUtil    from './rangeUtil';
-import data         from './emoji-data';
 import clickoutside from './clickoutside';
-import getUnicode   from './getUnicodeMap';
+import EmojiUtil    from './emojiUtil';
+
+const data = EmojiUtil.getEmojiData();
+const getUnicode = EmojiUtil.getUnicodeByName;
 
 const EXT    = '.png';
 const PREFIX = 'sprite-';
@@ -43,6 +45,7 @@ export default {
       pannels: ['表情', '自然', '物品', '地点', '符号'],
       activeIndex: 0,
       selection: null,
+      emojiInstance: EmojiUtil,
     };
   },
   props: {
@@ -83,6 +86,13 @@ export default {
         Path = path;
       }
       return this;
+    },
+    getImgPathByUnicode (unicode) {
+      if (!Path) {
+        throw new Error('缺少图片地址');
+      }
+      const name = EmojiUtil.getNameWithUnicode(unicode);
+      return `${Path}/${name}.png`;
     },
     handleUnicode () {
       if (!this.useUnicode) return;
@@ -218,6 +228,7 @@ export default {
     },
     getUnicodeEmoji (src, emojiName) {
       const emoji = getUnicode(emojiName);
+      console.log('Image Path => ', this.getImgPathByUnicode(emoji));
       return document.createTextNode(emoji);
     },
 

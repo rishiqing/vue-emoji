@@ -121,6 +121,37 @@ watch: {
 }
 ```
 
+#### `getImgPathByUnicode`
+该方法接收一个表情编码， 如果能够找到对应的图片， 则会返回基于前面设定的路径的图片，  如果没有找到， 则会返回null。
+```html
+<vue-emoji
+  v-show = 'showEmoji'
+  ref = 'emoji'
+  :unicode='true'
+  @select = 'handleSelect'
+  @hide = 'hide()'
+></vue-emoji>
+```
+
+
+```js
+handleSelect (img) {
+  if (img.nodeType === 3) {
+    var $img = new Image();
+    $img.src =  this.$refs.emoji.getImgPathByUnicode(img.textContent);
+    $app1.appendChild($img);
+  }
+  this.hide();
+}
+```
+
+#### `getUnicodeByImgPath`
+该方法接受一个图片地址， 返回对应的unicode编码的表情
+
+
+#### `setPath`
+用于指定所需使用的图片的地址路径。 默认为当前根目录下的`images/`， 推荐使用CDN.
+
 ### 属性
 
 #### `unicode`

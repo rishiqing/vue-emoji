@@ -1,4 +1,6 @@
 # CHANGELOG
+### 5月9日
+添加`unicode -> img`和`img -> unicode`的支持, [issue](https://github.com/rishiqing/vue-emoji/issues/14)
 
 ### 4月5日
 添加`Unicode`支持, [issue](https://github.com/rishiqing/vue-emoji/issues/8)

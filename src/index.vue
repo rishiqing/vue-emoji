@@ -18,9 +18,11 @@
 </template>
 <script>
 import RangeUtil    from './rangeUtil';
-import data         from './emoji-data';
 import clickoutside from './clickoutside';
-import getUnicode   from './getUnicodeMap';
+import EmojiUtil    from './emojiUtil';
+
+const data = EmojiUtil.getEmojiData();
+const getUnicode = EmojiUtil.getUnicodeByName;
 
 const EXT    = '.png';
 const PREFIX = 'sprite-';
@@ -43,6 +45,7 @@ export default {
       pannels: ['表情', '自然', '物品', '地点', '符号'],
       activeIndex: 0,
       selection: null,
+      emojiInstance: EmojiUtil,
     };
   },
   props: {
@@ -84,6 +87,19 @@ export default {
       }
       return this;
     },
+    getImgPathByUnicode (unicode) {
+      if (!Path) {
+        throw new Error('缺少图片地址');
+      }
+      const name = EmojiUtil.getNameWithUnicode(unicode);
+      return this.getPath(name);
+    },
+    getUnicodeByImgPath (imgPath) {
+      if (!imgPath) return null;
+      const path = imgPath.split('/');
+      const name = path[path.length - 1].slice(0, -4);
+      return getUnicode(name);
+    },
     handleUnicode () {
       if (!this.useUnicode) return;
       const view = this.$refs.view;
@@ -91,13 +107,11 @@ export default {
       Object.keys(data).forEach(panel => {
         const panelEmoji = data[panel];
         Object.keys(panelEmoji).forEach(item => {
-          if (!getUnicode(this.getPureName(item))) {
-            const ele = view.querySelector(`[title="${item}"]`);
-            if (ele) {
-              const par = ele.parentElement;
-              par.parentElement.removeChild(par);
-            }
-          }
+          if (getUnicode(this.getPureName(item))) return;
+          const ele = view.querySelector(`[title="${item}"]`);
+          if (!ele) return;
+          const par = ele.parentElement;
+          par.parentElement.removeChild(par);
         });
       });
     },

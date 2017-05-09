@@ -92,7 +92,7 @@ export default {
         throw new Error('缺少图片地址');
       }
       const name = EmojiUtil.getNameWithUnicode(unicode);
-      return `${Path}/${name}.png`;
+      return this.getPath(name);
     },
     handleUnicode () {
       if (!this.useUnicode) return;
@@ -101,13 +101,11 @@ export default {
       Object.keys(data).forEach(panel => {
         const panelEmoji = data[panel];
         Object.keys(panelEmoji).forEach(item => {
-          if (!getUnicode(this.getPureName(item))) {
-            const ele = view.querySelector(`[title="${item}"]`);
-            if (ele) {
-              const par = ele.parentElement;
-              par.parentElement.removeChild(par);
-            }
-          }
+          if (getUnicode(this.getPureName(item))) return;
+          const ele = view.querySelector(`[title="${item}"]`);
+          if (!ele) return;
+          const par = ele.parentElement;
+          par.parentElement.removeChild(par);
         });
       });
     },
@@ -228,7 +226,6 @@ export default {
     },
     getUnicodeEmoji (src, emojiName) {
       const emoji = getUnicode(emojiName);
-      console.log('Image Path => ', this.getImgPathByUnicode(emoji));
       return document.createTextNode(emoji);
     },
 

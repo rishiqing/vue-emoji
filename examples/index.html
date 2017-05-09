@@ -59,17 +59,19 @@
       v-show = 'showEmoji'
       ref = 'emoji'
       :unicode='true'
-      @select = 'hide()'
+      @select = 'handleSelect'
       @hide = 'hide()'
     ></vue-emoji>
   </div>
 </div>
+<div class="holder"></div>
 <div class="example-code">
   <pre>
 
   </pre>
 </div>
 <script type="text/javascript" id = 'script'>
+var $app1 = document.querySelector('.holder');
 var getCommon = function (selector) {
   return {
     el: selector,
@@ -91,6 +93,14 @@ var getCommon = function (selector) {
     methods: {
       hide () {
         this.showEmoji = false;
+      },
+      handleSelect (img) {
+        if (img.nodeType === 3) {
+          var $img = new Image();
+          $img.src =  this.$refs.emoji.getImgPathByUnicode(img.textContent);
+          $app1.appendChild($img);
+        }
+        this.hide();
       }
     },
     watch: {

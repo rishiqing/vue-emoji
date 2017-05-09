@@ -1,5 +1,6 @@
-import emojiData  from './emoji-data';
+import emojiData from './emoji-data';
 import unicodeMap from './getUnicodeMap';
+
 class Emoji {
   getEmojiData () {
     return emojiData;

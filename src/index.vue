@@ -94,6 +94,12 @@ export default {
       const name = EmojiUtil.getNameWithUnicode(unicode);
       return this.getPath(name);
     },
+    getUnicodeByImgPath (imgPath) {
+      if (!imgPath) return null;
+      const path = imgPath.split('/');
+      const name = path[path.length - 1].slice(0, -4);
+      return getUnicode(name);
+    },
     handleUnicode () {
       if (!this.useUnicode) return;
       const view = this.$refs.view;

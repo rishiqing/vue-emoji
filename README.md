@@ -133,6 +133,7 @@ watch: {
 ></vue-emoji>
 ```
 
+
 ```js
 handleSelect (img) {
   if (img.nodeType === 3) {
@@ -143,6 +144,10 @@ handleSelect (img) {
   this.hide();
 }
 ```
+
+#### `getUnicodeByImgPath`
+该方法接受一个图片地址， 返回对应的unicode编码的表情
+
 
 #### `setPath`
 用于指定所需使用的图片的地址路径。 默认为当前根目录下的`images/`， 推荐使用CDN.

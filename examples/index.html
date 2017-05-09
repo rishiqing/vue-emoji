@@ -44,11 +44,13 @@
     <vue-emoji
       v-show = 'showEmoji'
       ref = 'emoji'
-      @select = 'hide()'
+      @select = 'handleSelect'
       @hide = 'hide()'
     ></vue-emoji>
   </div>
 </div>
+<strong>从上面图片里面选择一个表情， 会在下面显示对应的unicode编码emoji</strong>
+<div class="img-to-unicode"></div>
 <hr>
 <div id="app2">
   <div>
@@ -65,14 +67,15 @@
   </div>
 </div>
 <strong>从Unicode里面选择一个表情， 会在下面显示对应的图片</strong>
-<div class="holder"></div>
+<div class="unicode-to-img"></div>
 <div class="example-code">
   <pre>
 
   </pre>
 </div>
 <script type="text/javascript" id = 'script'>
-var $app1 = document.querySelector('.holder');
+var $app1 = document.querySelector('.unicode-to-img');
+var $app2 = document.querySelector('.img-to-unicode');
 var getCommon = function (selector) {
   return {
     el: selector,
@@ -100,6 +103,10 @@ var getCommon = function (selector) {
           var $img = new Image();
           $img.src =  this.$refs.emoji.getImgPathByUnicode(img.textContent);
           $app1.appendChild($img);
+        } else {
+          var unicode = this.$refs.emoji.getUnicodeByImgPath(img.src);
+          var node = document.createTextNode(unicode);
+          $app2.appendChild(node);
         }
         this.hide();
       }

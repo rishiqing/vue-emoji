@@ -3,9 +3,9 @@
 <head>
   <title>Vue-emoji</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="../dest/vue-emoji.css">
+  <link rel="stylesheet" type="text/css" href="../dist/vue-emoji.css">
   <script src = './vue.min.js'></script>
-  <script src = '../dest/vue-emoji.js'></script>
+  <script src = '../dist/vue-emoji.js'></script>
   <style type="text/css">
     body {
       max-width: 800px;
@@ -36,14 +36,29 @@
   </style>
 </head>
 <body>
+<h1>Vue-Emoji</h1>
 <div id="app">
   <div>
-    <h1>Vue-Emoji</h1>
     <div contenteditable="" ref = 'edit' focus></div>
     <button ref = 'btn' @click = 'showEmoji = !showEmoji'>emoji</button>
     <vue-emoji
       v-show = 'showEmoji'
       ref = 'emoji'
+      @select = 'hide()'
+      @hide = 'hide()'
+    ></vue-emoji>
+  </div>
+</div>
+<hr>
+<div id="app2">
+  <div>
+    <h2>使用unicode字符</h2>
+    <div contenteditable="" ref = 'edit' focus></div>
+    <button ref = 'btn' @click = 'showEmoji = !showEmoji'>emoji</button>
+    <vue-emoji
+      v-show = 'showEmoji'
+      ref = 'emoji'
+      :unicode='true'
       @select = 'hide()'
       @hide = 'hide()'
     ></vue-emoji>
@@ -55,29 +70,42 @@
   </pre>
 </div>
 <script type="text/javascript" id = 'script'>
-new Vue({
-  el: '#app',
-  components: {
-    VueEmoji
-  },
-  data () {
-    return {
-      showEmoji : false
+var getCommon = function (selector) {
+  return {
+    el: selector,
+    components: {
+      VueEmoji
+    },
+    data () {
+      return {
+        showEmoji : false,
+      }
+    },
+    mounted () {
+      this.$refs.emoji.appendTo({
+        area: this.$refs.edit,
+        btn: this.$refs.btn,
+        position: 'top left'
+      });
+    },
+    methods: {
+      hide () {
+        this.showEmoji = false;
+      }
+    },
+    watch: {
+      showEmoji (value) {
+        if (value) {
+          this.$refs.emoji.calcPosition();
+        }
+      }
     }
-  },
-  mounted () {
-    this.$refs.emoji.appendTo({
-      area: this.$refs.edit,
-      btn: this.$refs.btn,
-      position: 'top left'
-    });
-  },
-  methods: {
-    hide () {
-      this.showEmoji = false;
-    }
-  }
-});
+  };
+}
+
+new Vue(getCommon('#app'));
+new Vue(getCommon('#app2'));
+
 </script>
 <script type="text/javascript">
 document.querySelector('.example-code pre').innerHTML = document.querySelector('#script').innerHTML;

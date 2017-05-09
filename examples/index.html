@@ -20,7 +20,6 @@
       text-align: left;
       color: #333;
       line-height: 1.7;
-
     }
     [contenteditable]:focus .rui-emoji-img{
       vertical-align: text-top;
@@ -44,11 +43,13 @@
     <vue-emoji
       v-show = 'showEmoji'
       ref = 'emoji'
-      @select = 'hide()'
+      @select = 'handleSelect'
       @hide = 'hide()'
     ></vue-emoji>
   </div>
 </div>
+<strong>从上面图片里面选择一个表情， 会在下面显示对应的unicode编码emoji</strong>
+<div class="img-to-unicode"></div>
 <hr>
 <div id="app2">
   <div>
@@ -59,17 +60,21 @@
       v-show = 'showEmoji'
       ref = 'emoji'
       :unicode='true'
-      @select = 'hide()'
+      @select = 'handleSelect'
       @hide = 'hide()'
     ></vue-emoji>
   </div>
 </div>
+<strong>从Unicode里面选择一个表情， 会在下面显示对应的图片</strong>
+<div class="unicode-to-img"></div>
 <div class="example-code">
   <pre>
 
   </pre>
 </div>
 <script type="text/javascript" id = 'script'>
+var $app1 = document.querySelector('.unicode-to-img');
+var $app2 = document.querySelector('.img-to-unicode');
 var getCommon = function (selector) {
   return {
     el: selector,
@@ -91,6 +96,18 @@ var getCommon = function (selector) {
     methods: {
       hide () {
         this.showEmoji = false;
+      },
+      handleSelect (img) {
+        if (img.nodeType === 3) {
+          var $img = new Image();
+          $img.src =  this.$refs.emoji.getImgPathByUnicode(img.textContent);
+          $app1.appendChild($img);
+        } else {
+          var unicode = this.$refs.emoji.getUnicodeByImgPath(img.src);
+          var node = document.createTextNode(unicode);
+          $app2.appendChild(node);
+        }
+        this.hide();
       }
     },
     watch: {
@@ -102,10 +119,8 @@ var getCommon = function (selector) {
     }
   };
 }
-
 new Vue(getCommon('#app'));
 new Vue(getCommon('#app2'));
-
 </script>
 <script type="text/javascript">
 document.querySelector('.example-code pre').innerHTML = document.querySelector('#script').innerHTML;
